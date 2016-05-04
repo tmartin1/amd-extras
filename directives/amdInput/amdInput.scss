@@ -1,0 +1,109 @@
+$default-amd-input-height: 64px;
+
+.fx-floating-label-default {
+    // The following is to replicate the style of the other input floating labels.
+    margin-top: 0px;
+    transform: translate3d(0, 6px, 0) scale(0.75);
+    transform-origin: left top;
+    color: rgba(0,0,0,0.54);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: auto;
+}
+.fx-error-messages-default {
+    // The following is to replicate the style of the other input error messages.
+    height: 15px;
+    overflow-y: hidden;
+}
+.fx-error-message-default {
+    // The following is to replicate the style of the other input error messages.
+    color: rgb(221, 44, 0);
+    font-size: $flx-font-size-s;
+    line-height: 14px;
+    overflow-y: hidden;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+}
+
+.amd-input {
+    display: block;
+    position: relative;
+    height: $default-amd-input-height;
+    margin: 0px;
+    width: 100%;
+
+    &.layout-row {
+        display: flex;
+    }
+    md-checkbox {
+        margin-bottom: $flx-spacing-s;
+    }
+    md-select {
+        margin: 0;
+        order: 2;
+    }
+    md-select-value {
+        padding-top: 0px;
+    }
+    md-switch {
+        margin: 0px;
+    }
+    .non-editable {
+        vertical-align: -webkit-baseline-middle;
+    }
+    .md-input-message-animation {
+        padding-top: $flx-spacing-xs;
+    }
+    .fx-error-message-red {
+        color: rgb(221, 44, 0);
+    }
+}
+
+.amd-input-radio {
+    display: block;
+    position: relative;
+    height: initial;
+
+    md-radio-button:first-of-type {
+        margin-top: $flx-spacing-m;
+    }
+    .fx-radio-label {
+        margin-bottom: 10px;
+    }
+    .fx-floating-radio-label {
+        @extend .fx-floating-label-default;
+        margin-bottom: 2px;
+        margin-top: 10px;
+    }
+    .fx-radio-error-messages {
+        @extend .fx-error-messages-default;
+        display: inline-flex;
+    }
+    .fx-radio-error-message {
+        @extend .fx-error-message-default;
+        padding-left: $flx-spacing-s;
+    }
+    // Special case for floating label with error messages for radio input.
+    .fx-floating-radio-label .fx-radio-error-message {
+        font-size: initial;
+    }
+}
+
+.amd-input-date {
+    padding: 2px; // Match other amd-input-containers.
+
+    .fx-date-label {
+        margin-top: 10px;
+    }
+    .fx-floating-date-label {
+        @extend .fx-floating-label-default;
+    }
+    .fx-date-error-messages {
+        @extend .fx-error-messages-default;
+    }
+    .fx-date-error-message {
+        @extend .fx-error-message-default;
+        padding-top: 2px;
+        margin-left: 64px;
+    }
+}

@@ -1,0 +1,32 @@
+<md-input-container flex class="amd-input md-block" md-no-float>
+    <!-- If field is not editable -->
+    <div flex data-ng-class="{ hidden: vm.editable === true || vm.editable === undefined }" class="non-editable">
+        {{ vm.displayModel() }}
+    </div>
+
+    <!-- If field is editable -->
+    <span flex data-ng-class="{ hidden: vm.editable === false }">
+        <label data-ng-class="{ hidden: !vm.config.floatingLabel }" data-ng-if="vm.config.label">
+            {{ vm.config.label }}
+        </label>
+
+        <textarea ng-model="vm.model"
+            data-ng-init="inputId = $id"
+            name="{{ vm.config.name || inputId }}"
+            md-maxlength="{{vm.config.maxlength}}"
+            data-ng-change="vm.config.onchange()"
+            data-ng-disabled="vm.disabled"
+            data-ng-required="vm.required"
+            aria-label="{{ vm.config.label || vm.config.placeholder }}"
+            rows="{{ vm.config.rows || 2 }}"
+            md-select-on-focus>
+        </textarea>
+    </span>
+
+    <!-- Error messages -->
+    <div data-ng-messages="vm.form[vm.config.name || inputId].$error" data-ng-show="vm.form.$dirty">
+        <div data-ng-repeat="(name, msg) in vm.errorMessages" data-ng-message="{{ name }}" class="md-input-message-animation">
+            {{ msg }}
+        </div>
+    </div>
+</md-input-container>

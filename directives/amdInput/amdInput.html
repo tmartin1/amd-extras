@@ -1,0 +1,16 @@
+<span data-ng-switch="vm.type">
+    <amd-input-text data-ng-switch-when="text" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-text>
+    <amd-input-email data-ng-switch-when="email" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-email>
+    <amd-input-phone data-ng-switch-when="phone" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-phone>
+    <amd-input-number data-ng-switch-when="number" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-number>
+    <amd-input-currency data-ng-switch-when="currency" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-currency>
+    <amd-input-select data-ng-switch-when="select" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-select>
+    <amd-input-switch data-ng-switch-when="switch" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-switch>
+    <amd-input-radio data-ng-switch-when="radio" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-radio>
+    <amd-input-checkbox data-ng-switch-when="checkbox" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-checkbox>
+    <amd-input-date data-ng-switch-when="date" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-date>
+    <amd-input-textarea data-ng-switch-when="textarea" model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-textarea>
+
+    <!-- Default to text input if type is not defined. -->
+    <amd-input-text data-ng-switch-default model="vm.model" options="vm.options" form="vm.form" editable="vm.editable" disabled="vm.disabled" required="vm.required"></amd-input-text>
+</span>

@@ -1,0 +1,41 @@
+<div flex class="amd-input amd-input-date" layout="row">
+
+    <!-- If field is not editable -->
+    <span data-ng-class="{ hidden: vm.editable === true || vm.editable === undefined }" class="non-editable">
+        {{ vm.model | date: vm.config.displayFilter || 'MMM d, y' }}
+    </span>
+
+    <!-- If field is editable -->
+    <span flex data-ng-class="{ hidden: vm.editable === false }">
+        <label flex="none"
+            class="fx-date-label fx-floating-date-label"
+            data-ng-if="vm.config.label && vm.config.floatingLabel">
+            {{ vm.config.label }}
+        </label>
+
+        <div flex="none">
+            <md-datepicker data-ng-init="inputId = $id"
+                name="{{ vm.config.name || inputId }}"
+                data-ng-model="vm.model"
+                data-ng-change="vm.config.onchange()"
+                data-ng-disabled="vm.config.disabled"
+                md-placeholder="{{ vm.config.placeholder || vm.config.label || 'Enter date' }}"
+                data-ng-disabled="vm.disabled"
+                data-ng-required="vm.required"
+                md-min-date="vm.config.mindate"
+                md-max-date="vm.config.maxdate"
+                md-date-filter="vm.config.dateFilter"
+                aria-label="{{ vm.config.label || vm.config.placeholder || 'Date'}}">
+            </md-datepicker>
+
+            <!-- Error messages -->
+            <div data-ng-messages="vm.form[vm.config.name || inputId].$error"
+                data-ng-show="(vm.form[vm.config.name].$touched || vm.form.$submitted) && vm.form[vm.config.name].$invalid && !vm.config.disabled"
+                class="fx-date-error-messages">
+                <div data-ng-repeat="(name, msg) in vm.errorMessages" data-ng-message="{{ name }}" class="fx-date-error-message">
+                    {{ msg }}
+                </div>
+            </div>
+        </div>
+    </span>
+</div>

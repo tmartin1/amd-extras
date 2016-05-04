@@ -1,0 +1,30 @@
+<div class="amd-input amd-input-radio">
+    <label class="fx-radio-label"
+        data-ng-if="vm.config.label"
+        data-ng-class="{ 'fx-floating-radio-label': vm.config.floatingLabel }">
+        {{ vm.config.label }}
+
+        <!-- Error messages -->
+        <div data-ng-messages="vm.form[vm.config.name || inputId].$error"
+            data-ng-show="(vm.form[vm.config.name].$touched || vm.form.$submitted) && vm.form[vm.config.name].$invalid && !vm.config.disabled"
+            class="fx-radio-error-messages">
+            <div data-ng-repeat="(name, msg) in vm.errorMessages" data-ng-message="{{ name }}" class="fx-radio-error-message">
+                {{ msg }}
+            </div>
+        </div>
+    </label>
+
+    <md-radio-group data-ng-model="vm.model"
+        data-ng-init="inputId = $id"
+        name="{{ vm.config.name || inputId }}"
+        data-ng-change="vm.config.onchange()"
+        data-ng-required="vm.required"
+        aria-label="{{ vm.config.label }}">
+        <md-radio-button class="md-primary"
+            data-ng-repeat="(name, value) in vm.config.items track by $index"
+            data-ng-disabled="vm.disabled"
+            value="{{ value }}">
+            {{ name }}
+        </md-radio-button>
+    </md-radio-group>
+</div>

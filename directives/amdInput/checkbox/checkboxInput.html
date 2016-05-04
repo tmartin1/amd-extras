@@ -1,0 +1,19 @@
+<md-input-container flex class="amd-input" data-ng-class="{ 'md-input-invalid': vm.form[vm.config.name].$error }" md-no-float>
+    <md-checkbox class="md-primary"
+        data-ng-init="inputId = $id"
+        name="{{ vm.config.name || inputId }}"
+        data-ng-model="vm.model"
+        data-ng-change="vm.config.onchange()"
+        data-ng-disabled="vm.disabled"
+        data-ng-required="vm.required"
+        aria-label="{{ vm.config.label }}">
+        {{ vm.config.label }}
+    </md-checkbox>
+
+    <!-- Error messages -->
+    <div data-ng-messages="vm.form[vm.config.name || inputId].$error" data-ng-show="vm.form.$submitted && vm.form.$invalid">
+        <div data-ng-repeat="(name, msg) in vm.errorMessages" data-ng-message="{{ name }}" class="md-input-message-animation">
+            {{ msg }}
+        </div>
+    </div>
+</md-input-container>

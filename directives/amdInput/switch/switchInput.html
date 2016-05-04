@@ -1,0 +1,20 @@
+<md-input-container flex class="amd-input" md-no-float>
+    <md-switch class="md-primary"
+        data-ng-init="inputId = $id"
+        name="{{ vm.config.name || inputId }}"
+        data-ng-model="vm.model"
+        data-ng-change="vm.config.onchange()"
+        data-ng-disabled="vm.config.disabled"
+        aria-label="{{ vm.config.label }}">
+
+        <!-- Switch label -->
+        <span data-ng-if="vm.config.label">
+            {{ vm.config.label }}
+        </span>
+
+        <!-- Optional true/false text -->
+        <span data-ng-if="vm.config.text">
+            {{ vm.model ? vm.config.text[0] : vm.config.text[1] }}
+        </span>
+    </md-switch>
+</md-input-container>

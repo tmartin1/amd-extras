@@ -1,0 +1,36 @@
+<md-input-container flex class="amd-input" md-no-float>
+
+    <!-- If field is not editable -->
+    <span data-ng-class="{ hidden: vm.editable === true || vm.editable === undefined }" class="non-editable">
+        {{ vm.displayValue }}
+    </span>
+
+    <!-- If field is editable -->
+    <span flex data-ng-class="{ hidden: vm.editable === false }">
+        <label data-ng-class="{ hidden: !vm.config.floatingLabel }" data-ng-if="vm.config.label">
+            {{ vm.config.label }}
+        </label>
+
+        <!-- Input field -->
+        <md-select flex
+            data-ng-init="inputId = $id"
+            name="{{ vm.config.name || inputId }}"
+            data-ng-model="vm.model"
+            data-ng-disabled="vm.disabled"
+            data-ng-required="vm.required"
+            placeholder="{{ vm.config.label }}"
+            aria-label="{{ vm.config.label || vm.config.placeholder }}">
+            <md-option data-ng-repeat="(name, value) in vm.items" value="{{ value }}" data-ng-click="vm.optionClick(value, name)">
+                {{ name }}
+            </md-option>
+        </md-select>
+
+        <!-- Error messages -->
+        <div data-ng-messages="vm.form[vm.config.name || inputId].$error"
+            data-ng-show="(vm.form[vm.config.name].$touched || vm.form.$submitted) && vm.form[vm.config.name].$invalid && !vm.config.disabled">
+            <div data-ng-repeat="(name, msg) in vm.errorMessages" data-ng-message="{{ name }}" class="md-input-message-animation fx-error-message-red">
+                {{ msg }}
+            </div>
+        </div>
+    </span>
+</md-input-container>
