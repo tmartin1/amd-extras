@@ -1,0 +1,27 @@
+/**
+ * Styles for pending state / page loading overlay.
+ */
+.pending-state-wrapper {
+    .pending-state-spinner {
+        align-items: center;
+        background-color: $flx-color-white;
+        border-radius: 15px;
+        position: fixed;
+        top: 40%;
+        left: 40%;
+        height: 10%;
+        min-height: 110px;
+        width: 20%;
+        min-width: 110px;
+        z-index: 100001;
+    }
+    .pending-state-backdrop {
+        background-color: rgba(33, 33, 33, 0.48);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 100000;
+    }
+}
