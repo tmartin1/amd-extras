@@ -1,0 +1,216 @@
+<md-card class="amdDatatable" flex="grow">
+
+    <!-- Title -->
+    <md-card-title class="dt-title-block" layout="row" layout-align="start end">
+        <!-- Table title -->
+        <span class="dt-title" data-ng-if="dt.options.title">
+            {{ dt.options.title }}
+        </span>
+
+        <span flex></span>
+
+        <!-- Search results -->
+        <div class="dt-search-block" data-ng-if="dt.options.searchable">
+            <label for="dt-search">
+                <md-icon class="material-icons">search</md-icon>
+            </label>
+            <md-input-container class="dt-search" md-no-float>
+                <form data-ng-submit="dt.search(dt.searchInput)">
+                    <input placeholder="Search {{ dt.options.title }}..." type="text" data-ng-model="dt.searchInput" autocomplete="off">
+                </form>
+                <md-button class="md-icon-button dt-clear-search" data-ng-click="dt.clearSearch()" data-ng-if="dt.searchInput">
+                    <md-icon class="material-icons">clear</md-icon>
+                </md-button>
+            </md-input-container>
+        </div>
+    </md-card-title>
+
+
+    <!-- Actions -->
+    <md-card-actions class="dt-actions-block" layout="row" layout-align="start center">
+        <span class="dt-selectAllNone" data-ng-if="dt.options.row.selectAll">
+            <md-button class="md-primary no-margin titlecase" data-ng-click="dt.toggleSelectAllRows()">
+                Select {{ dt.selectedRows.size ? 'None' : 'All' }}
+            </md-button>
+            <i class="subtle">({{ dt.selectedRows.size || 0 }} Selected)</i>
+        </span>
+        <md-button class="md-primary md-warn no-margin titlecase" data-ng-if="dt.anyFilterSelected()" data-ng-click="dt.clearAllFilters()">
+            Clear All Filters
+        </md-button>
+        <span flex></span>
+        <span class="dt-results-per-page" layout="row" layout-align="end end"
+            data-ng-if="!dt.options.scroll && dt.pagination.totalResults > dt.pagination.rowsPerPageOptions[0]">
+            <md-select data-ng-model="dt.pagination.rowsPerPage" data-ng-change="dt.rowsPerPage(dt.pagination.rowsPerPage)" aria-label="Select results per page">
+                <md-option data-ng-repeat="rpp in dt.pagination.rowsPerPageOptions" value="{{ rpp }}">
+                    {{ rpp }}
+                </md-option>
+            </md-select>
+            Results per page
+        </span>
+    </md-card-actions>
+
+
+    <!-- Table -->
+    <md-card-content class="dt-table-block">
+        <table class="dt-table">
+
+            <!-- Column labels (first row) -->
+            <thead class="dt-table-head">
+                <tr class="dt-row">
+                    <td data-ng-repeat="(key, column) in dt.columns track by $index" data-ng-if="!column.hidden"
+                        class="dt-cell" data-ng-class="{ 'center-text': column.align === 'center' }">
+                        <!-- Columnt sort button & title -->
+                        <span data-ng-switch="column.sortable">
+                            <span data-ng-switch-when="true" class="clickable no-focus" data-ng-click="dt.sort(column, key)">
+                                {{ column.title }}
+                                <button class="md-button md-icon-button dt-thead-icon">
+                                    <i class="fa fa-lg fa-fw fa-sort" data-ng-class="{ active: dt.currentSortColumnIndex === key }"></i>
+                                </button>
+                            </span>
+                            <span data-ng-switch-default>{{ column.title }}</span>
+                        </span>
+
+                        <!-- Column filter button -->
+                        <md-menu class="dt-filter-menu" data-ng-if="column.filters" md-offset="0 40">
+                            <!-- Buttons inside md-menu must use ng-click instead of data-ng-click -->
+                            <button class="md-button md-icon-button md-ink-ripple dt-thead-icon" ng-click="$mdOpenMenu()" aria-label="{{ column.title }} filters">
+                                <i class="fa fa-lg fa-fw fa-filter" data-ng-class="{ active: dt.anyFilterSelected(column.filters) }"></i>
+                            </button>
+
+                            <md-menu-content class="dt-filter-menu-content">
+                                <!-- Menu title/action bar -->
+                                <md-menu-item class="dt-filter-menu-content-header">
+                                    <button flex="70" class="md-button md-primary no-margin no-padding"
+                                        md-prevent-menu-close
+                                        data-ng-if="column.filters.length > 2"
+                                        data-ng-click="dt.toggleSelectAllFilters(column.filters, key)">
+                                        {{ dt.anyFilterSelected(column.filters) ? 'Clear' : 'Select All' }}
+                                    </button>
+                                    <button flex class="md-button md-primary no-margin no-padding" data-ng-click="dt.filter(dt.activeFilters)">
+                                        Apply
+                                    </button>
+                                </md-menu-item>
+                                <md-divider></md-divider>
+
+                                <!-- Filter options -->
+                                <md-menu-item class="dt-filter-menu-item" data-ng-repeat="filter in column.filters track by $index">
+                                    <md-checkbox data-ng-model="filter.selected"
+                                        data-ng-click="dt.toggleFilter(filter, $parent.key)"
+                                        md-prevent-menu-close
+                                        aria-label="{{ filter.name || '(empty)' }}">
+                                        {{ filter.name || '(empty)' }}
+                                    </md-checkbox>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+
+                        <!-- Column popover -->
+                        <span data-ng-if="column.popover">
+                            <button class="md-button md-icon-button md-ink-ripple dt-thead-icon">
+                                <i class="fa fa-fw fa-info-circle"></i>
+                            </button>
+                            <md-tooltip md-visible="demo.showTooltip" md-direction="top">
+                                {{ column.popover.text || column.popover }}
+                            </md-tooltip>
+                        </span>
+                    </td>
+                </tr>
+            </thead>
+
+            <!-- Table data -->
+            <tbody class="dt-table-body">
+                <tr data-ng-if="!dt.pendingData"
+                    data-ng-repeat="row in dt.tableData | sortByColumn: dt.firstSortCol : dt.reverseSort : dt.secondSortCol
+                                                        | startFrom: dt.pagination.start() - 1
+                                                        | limitTo: dt.pagination.rowsPerPage
+                                                        track by $index"
+                    class="dt-row {{ row.customClass }}"
+                    data-ng-class="{ stripe: $odd, selected: dt.selectedRows.has(row), suspended: row.suspended, disabled: row.disabled }"
+                    data-ng-click="dt.rowClick($event, row, $index)"
+                    data-ng-dblclick="dt.rowDoubleClick($event, row, $index)"
+                    data-ng-right-click="dt.rowRightClick($event, row, $index)"
+                    data-ng-init="rowIndex = $index">
+
+                    <td data-ng-repeat="column in dt.columns track by $index"
+                        data-ng-init="key = column.key || $index"
+                        data-ng-if="!column.hidden"
+                        class="dt-cell {{ column.bodyClass }}"
+                        data-ng-class="{ 'dt-cell-button': !!column.cellClick, 'center-text': column.align === 'center' }">
+
+                        <!-- This key is the same as the column key that the cell is in. -->
+                        <div data-ng-switch="!!column.cellClick">
+                            <!-- Plain text cell content -->
+                            <span data-ng-switch-default data-ng-class="{ 'pre': column.multiline, 'pre-wrap': !column.multiline }">{{ dt.renderCell(row, key, column) }}</span>
+                            <!-- Clickable cell -->
+                            <button data-ng-switch-when="true"
+                                class="md-button md-primary"
+                                data-ng-click="column.cellClick($event, row, key, rowIndex)">
+                                {{ dt.renderCell(row, key, column) }}
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pending table data spinner (initial load) -->
+        <div data-ng-if="dt.pending" class="dt-pending-data-cover" data-ng-class="{ 'dt-pending-data-initial': !dt.tabledata.length }" flex>
+            <spinner pending="dt.pending" diameter="80"></spinner>
+        </div>
+    </md-card-content>
+
+
+    <!-- Pagination -->
+    <md-card-content class="dt-pagination-block" layout="row" layout-align="start center">
+        <i>Showing {{ dt.pagination.start() }} to {{ dt.pagination.end() }} of {{ dt.pagination.totalResults | number:0 }} entries</i>
+
+        <span flex></span>
+
+        <!-- Page navigation buttons -->
+        <div layout="row" layout-align="end center" data-ng-show="dt.pagination.pageCount > 1">
+            <!-- Go to first page -->
+            <button class="md-button md-raised square-button"
+                data-ng-click="dt._updatePaginationBar(true)"
+                data-ng-show="dt.pagination.current >= 4">
+                <md-icon class="material-icons">first_page</md-icon>
+            </button>
+
+            <!-- Previous page -->
+            <button class="md-button md-raised square-button"
+                data-ng-click="dt.previousPage()"
+                data-ng-disabled="dt.pagination.current === 1">
+                <md-icon class="material-icons">chevron_left</md-icon>
+            </button>
+
+            <!-- Page numbers -->
+            <button data-ng-repeat="page in dt.pagination.pageButtons track by $index"
+                class="md-button md-raised square-button" data-ng-class="{ 'md-primary': dt.pagination.current === page }"
+                data-ng-click="dt.goToPage(page)">
+                {{ page }}
+            </button>
+
+            <!-- Next page -->
+            <button class="md-button md-raised square-button"
+                data-ng-click="dt.nextPage()"
+                data-ng-disabled="dt.pagination.current === dt.pagination.pageCount">
+                <md-icon class="material-icons">chevron_right</md-icon>
+            </button>
+        </div>
+    </md-card-content>
+
+
+    <!-- Right click menu -->
+    <div class="md-open-menu-container md-whiteframe-z2 md-active md-clickable"
+        style="position: fixed; display: {{dt.rowMenu.show || 'none'}}; top: {{dt.rowMenu.y}}; left: {{dt.rowMenu.x}}">
+        <md-menu-content width="3" role="menu">
+            <md-menu-item ng-repeat="item in dt.options.row.menu">
+                <button ng-click="item.onClick(dt.rowMenu.data, dt.rowMenu.index)" class="md-button md-primary">
+                    {{ item.text }}
+                </button>
+            </md-menu-item>
+        </md-menu-content>
+    </div>
+    <!-- Menu backdrop -->
+    <md-backdrop data-ng-if="dt.rowMenu.data" class="md-menu-backdrop md-click-catcher" data-ng-click="dt.dismissRightClickMenu()"></md-backdrop>
+
+</md-card>

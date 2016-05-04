@@ -1,0 +1,198 @@
+// Custom style for amdDatatables.
+.amdDatatable {
+    position: relative;
+    table {
+        border-spacing: 0;
+    }
+    .dt-row {
+        &:focus {
+            outline: none;
+        }
+    }
+    .dt-cell {
+        border: none;
+        overflow: hidden;
+        padding: $flx-spacing-s;
+    }
+    .dt-search {
+        margin: 0;
+        padding: 0;
+        width: 400px;
+        .md-errors-spacer {
+            display: none;
+        }
+    }
+    .disabled, .disabled .md-button {
+        color: $flx-grey-medium-light;
+        cursor: default;
+        pointer-events: none;
+        text-decoration: none;
+    }
+    .suspended {
+        color: $flx-color-red-l;
+    }
+
+    // Style for title section.
+    .dt-title-block {
+        border-bottom: 1px solid $flx-grey-light;
+        .dt-title {
+            font-size: $flx-font-size-xl;
+        }
+        .dt-search-block {
+            .dt-clear-search {
+                position: absolute;
+                top: -6px;
+                right: -8px;
+                md-icon {
+                    color: $flx-grey-medium;
+                }
+            }
+        }
+    }
+
+    // Style for table actions section.
+    .dt-actions-block {
+        margin: $flx-spacing-s $flx-spacing-m;
+        .dt-selectAllNone {
+            margin-right: $flx-spacing-xl;
+            a, a:hover, a:focus, a:active, a:visited {
+                color: $flx-color-blue;
+            }
+            button {
+                min-width: 100px;
+            }
+        }
+        .dt-results-per-page {
+            height: 36px;
+            padding-bottom: $flx-spacing-xs;
+        }
+        md-select {
+            margin: 0 $flx-spacing-s;
+        }
+    }
+
+    // Style for table section.
+    .dt-table-block {
+        padding-top: 0;
+        .dt-table {
+            width: 100%;
+        }
+        .dt-table-head {
+            font-weight: bold;
+            .fa {
+                color: $flx-grey-medium-light;
+            }
+            .fa.active {
+                color: $flx-color-blue;
+            }
+            .dt-cell {
+                border-bottom: 1px solid $flx-grey-medium;
+                white-space: nowrap;
+            }
+            .dt-filter-menu {
+                padding: 0;
+                &.md-open .fa {
+                    @extend .fa.active;
+                }
+                .md-label {
+                    margin-left: $flx-spacing-m;
+                }
+            }
+            .dt-thead-icon {
+                height: $flx-spacing-xl;
+                min-height: $flx-spacing-xl;
+                line-height: normal;
+                margin: -8px 0;
+                padding: 0;
+                width: $flx-spacing-l;
+                .fa-lg {
+                    vertical-align: 0%;
+                }
+            }
+        }
+        .dt-table-body {
+            .dt-row {
+                &.stripe {
+                    background-color: $flx-grey-ultralight;
+                }
+                &.selected {
+                    background-color: $flx-color-blue-ul;
+                }
+            }
+            .dt-cell {
+                &.dt-cell-button {
+                    padding: 0;
+                }
+                button {
+                    height: 100%;
+                    margin: 0;
+                    padding: 0 $flx-spacing-s;
+                    text-align: inherit;
+                    width: 100%;
+                }
+                button:hover {
+                    background-color: inherit;
+                    color: $flx-color-blue;
+                }
+                .pre-wrap {
+                    white-space: pre-wrap;
+                }
+                .pre {
+                    white-space: pre;
+                }
+            }
+        }
+        .dt-pending-data-cover {
+            background-color: rgba(33, 33, 33, 0.1);
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1;
+            &.dt-pending-data-initial {
+                display: flex;
+                position: relative;
+                height: 120px;
+            }
+        }
+    }
+
+    // Style for pagination section.
+    .dt-pagination-block {
+        .square-button {
+            border: 1px solid $flx-grey-light;
+            border-right: none;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            min-width: 50px;
+            &:first-of-type {
+                border-radius: 3px 0 0 3px;
+            }
+            &:last-of-type {
+                border-right: 1px solid $flx-grey-light;
+                border-radius: 0 3px 3px 0;
+            }
+            &.md-primary {
+                border-bottom-color: rgb(33,150,243);
+                border-top-color: rgb(33,150,243);
+            }
+        }
+    }
+}
+
+// Outside of .amdDatatable class to customize style when dropdown is open.
+.dt-filter-menu-content {
+    max-height: 300px;
+    min-width: 200px;
+    .dt-filter-menu-content-header {
+        button {
+            height: $flx-spacing-xl;
+            text-align: center;
+        }
+    }
+    .dt-filter-menu-item {
+        padding: 0px $flx-spacing-m;
+    }
+}
