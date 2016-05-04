@@ -1,0 +1,12 @@
+/**
+ * Globally override Font Awesome styles.
+ * If you adding anything to this page. Please be sure to explain the override is necessary.
+ * Edit with care.
+ */
+
+// Default vertical-align for .fa-lg is -15%. On the fa-code class, this makes it appear
+// significantly lower than the text around it. Adjusting this to -5% makes the shift less
+// noticable.
+.fa.fa-code.fa-lg {
+    vertical-align: -5%;
+}

@@ -1,0 +1,136 @@
+/**
+ * General Page Element Customization (titles, subtiles, etc.)
+ */
+body {
+    //
+}
+h2 {
+    margin: $flx-spacing-s 0px $flx-spacing-xs;
+}
+a, a:hover, a:active, a:focus, a:visited {
+    color: $flx-color-blue;
+    text-decoration: none;
+}
+.main-content {
+    background-color: $flx-grey-ultralight;
+    min-height: 100%;
+    margin-top: -$navbar-height;
+    padding-top: $navbar-height;
+}
+.fx-button-group {
+    display: flex;
+    flex-direction: row;
+    button {
+        margin-right: 0px;
+    }
+    button:not(:first-of-type),
+    button:not(:last-of-type) {
+        border-radius: 0px;
+        margin-left: 0px;
+    }
+    button:first-of-type {
+        border-radius: 3px 0px 0px 3px;
+    }
+    button:last-of-type {
+        border-radius: 0px 3px 3px 0px;
+    }
+}
+
+/**
+ * General alignment and positioning customizations
+ */
+.hidden {
+    display: none;
+}
+.block {
+    display: block;
+}
+.clickable {
+    cursor: pointer;
+}
+.full-width {
+    width: 100%;
+}
+.pin-bottom {
+    position: absolute;
+    bottom: 0;
+}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.center-text {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-left {
+    text-align: left;
+}
+.lowercase {
+    text-transform: lowercase;
+}
+.titlecase {
+    text-transform: capitalize;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.no-wrap {
+    white-space: nowrap;
+}
+.no-padding {
+    padding: 0px;
+}
+.no-margin {
+    margin: 0px;
+}
+.no-focus {
+    outline: none;
+}
+.subtle {
+    color: $flx-grey-medium;
+}
+
+/**
+ * Animation assistance classes.
+ * See http://theoinglis.github.io/ngAnimate.css/#/ for more info.
+ */
+
+/**
+ * collapse, slide-up, slide-down, and squash-vertical animations require the 'max-height' property
+ * to be defined in order to animate properly. If not defined on the parent class, add one of the
+ * following helper classes to smooth out the animation. If no max-height is defined, it will
+ * default to the catch-all class below with max-height = 800px.
+ */
+.nga-collapse.ng-animate,
+.nga-slide-up.ng-animate,
+.nga-slide-down.ng-animate,
+.nga-squash-vertical.ng-animate {
+    max-height: 800px;
+}
+.nga-tiny.ng-animate {
+    max-height: 100px;
+}
+.nga-small.ng-animate {
+    max-height: 400px;
+}
+.nga-medium.ng-animate {
+    max-height: 800px;
+}
+.nga-large.ng-animate {
+    max-height: 1200px;
+}
+.nga-huge.ng-animate {
+    max-height: 1600px;
+}
+
+/**
+ * For raw markdown files imported via <div data-ng-bind-html="vm.something.html"></div>
+ */
+.markdown-wrapper {
+    max-width: 100%;
+}

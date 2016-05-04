@@ -1,0 +1,44 @@
+/**
+ * Globally override Angular-Material styles.
+ * If you adding anything to this page. Please be sure to explain the override is necessary.
+ * Edit with care.
+ */
+
+// Ensures that the backdrop for a select menu is right behind the select object.
+md-backdrop {
+    &.md-select-backdrop {
+      z-index: $z-index-select - 1;
+    }
+}
+
+// Fix issue when dialog doesn't display correctly if the page is scrolled
+body.md-dialog-is-showing {
+    overflow: visible !important;
+}
+
+// Fix an issue with squished buttons inside of md-menu elements.
+md-menu-content.md-menu-bar-menu.md-dense .md-button {
+    height: inherit;
+}
+
+// Fix issue with autocomplete dropdown click area.
+// Without this fix there is a small (15px) margin on the left and right of each option that
+// appears clickable, but doesn't do anything. This makes the entire option area clickable.
+.md-autocomplete-suggestions li {
+    padding: 0px;
+
+    md-autocomplete-parent-scope div {
+        padding: 0px 15px;
+    }
+}
+
+// Remove that obnoxious blue outline when a toolbar is focused.
+md-toolbar:focus {
+    outline: none;
+}
+
+// Fix issue when fxInput directive is used in a dialog box
+// Without this, the text color of the text input turns transparent on unfocus
+md-input-container:not(.md-input-has-value) input:not(:focus) {
+    color: inherit;
+}

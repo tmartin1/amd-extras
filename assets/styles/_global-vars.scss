@@ -1,0 +1,141 @@
+/**
+ * Global Style Variables
+ */
+
+/*----[Layout Vars]-----*/
+$navbar-height: 64px;
+$left-sidebar-width: 256px;
+$base-spacing-unit: 8px;
+$default-dashboard-padding: 16px; // $flx-spacing-m;
+$breadcrumb-height: 52px; // Match sidenav button total height.
+
+/*----[Color Vars]-----*/
+
+// Monochrome Colors
+$flx-grey-ultralight: #f2f2f2;
+$flx-grey-light: #dfdfdf;
+$flx-grey-medium-light: #aaa;
+$flx-grey-medium: #777;
+$flx-grey-dark: #444;
+
+// Brand Colors
+$flx-color-black: #000;
+$flx-color-white: #fff;
+$flx-color-blue: #2279ed;
+$flx-color-yellow: #fecd19;
+$flx-color-orange: #f58025;
+$flx-color-green: #06A530;
+$flx-color-red: #d11313;
+
+// Message Colors
+$flx-color-go: $flx-color-green;
+$flx-color-yield: $flx-color-yellow;
+$flx-color-stop: $flx-color-red;
+$flx-color-generic: $flx-color-yellow;
+
+// Primary (Blue) Shades
+$flx-color-blue-uul: lighten($flx-color-blue, 45%); // #f6fafe
+$flx-color-blue-ul: lighten($flx-color-blue, 40%); // #dfebfc
+$flx-color-blue-l: lighten($flx-color-blue, 30%); // #afcff9
+$flx-color-blue-ml: lighten($flx-color-blue, 15%); // #69a4f3
+$flx-color-blue-m: darken($flx-color-blue, 20%);
+$flx-color-blue-d: darken($flx-color-blue, 30%);
+$flx-color-blue-ud: darken($flx-color-blue, 40%);
+
+// Secondary (Yellow) Shades
+$flx-color-yellow-uul: lighten($flx-color-yellow, 60%);
+$flx-color-yellow-ul: lighten($flx-color-yellow, 40%);
+$flx-color-yellow-l: lighten($flx-color-yellow, 30%);
+$flx-color-yellow-ml: lighten($flx-color-yellow, 15%);
+$flx-color-yellow-m: darken($flx-color-yellow, 20%);
+$flx-color-yellow-d: darken($flx-color-yellow, 30%);
+$flx-color-yellow-ud: darken($flx-color-yellow, 40%);
+
+// Tertiary (Orange) Shades
+$flx-color-orange-ul: lighten($flx-color-orange, 40%);
+$flx-color-orange-l: lighten($flx-color-orange, 30%);
+$flx-color-orange-ml: lighten($flx-color-orange, 15%);
+$flx-color-orange-m: darken($flx-color-orange, 20%);
+$flx-color-orange-d: darken($flx-color-orange, 30%);
+$flx-color-orange-ud: darken($flx-color-orange, 40%);
+
+// Green shades
+$flx-color-green-uul: lighten($flx-color-green, 60%);
+$flx-color-green-ul: lighten($flx-color-green, 40%);
+$flx-color-green-l: lighten($flx-color-green, 30%);
+$flx-color-green-ml: lighten($flx-color-green, 15%);
+$flx-color-green-m: darken($flx-color-green, 20%);
+$flx-color-green-d: darken($flx-color-green, 30%);
+$flx-color-green-ud: darken($flx-color-green, 40%);
+
+// Red shades
+$flx-color-red-uul: lighten($flx-color-red, 50%);
+$flx-color-red-ul: lighten($flx-color-red, 40%);
+$flx-color-red-l: lighten($flx-color-red, 30%);
+$flx-color-red-ml: lighten($flx-color-red, 15%);
+$flx-color-red-m: darken($flx-color-red, 20%);
+$flx-color-red-d: darken($flx-color-red, 30%);
+$flx-color-red-ud: darken($flx-color-red, 40%);
+
+/*----[Typography Vars]-----*/
+
+// Font Families
+$flx-font-family-default: 'OpenSans', Helvetica, Arial, sans-serif;
+$flx-font-family-title: 'Rijsel';
+
+// Font Weights
+$flx-font-weight-extralight: 200;
+$flx-font-weight-light: 300;
+$flx-font-weight-regular: 400;
+$flx-font-weight-semibold: 500;
+$flx-font-weight-bold: 600;
+$flx-font-weight-extrabold: 700;
+
+// Font Sizes
+$flx-font-size-xs: 10px;
+$flx-font-size-s: 12px;
+$flx-font-size-m: 14px;
+$flx-font-size-ml: 16px;
+$flx-font-size-l: 18px;
+$flx-font-size-xl: 24px;
+$flx-font-size-xxl: 32px;
+$flx-font-size-xxxl: 48px;
+$flx-font-size-xxxxl: 71px;
+
+// Line Height
+$flx-line-height-tight: 1;
+$flx-line-height-small: 1.1;
+$flx-line-height-regular: 1.42857143;
+
+/*-----[Z-Indices Map]-----*/
+$z-index: (
+    modal-select: 10000,
+    modal: 9000,
+    overlay: 8000,
+    dropdown: 7000,
+    header: 6000,
+    sidebar: 5000,
+    footer: 4000
+);
+
+/*----[Grid Vars]-----*/
+
+// Base Margin Values
+$flx-row-margin-sides: 15px;
+
+// Base Padding Values
+$grid-base-pad: 25px;
+
+// Spacing values, used for padding and margins
+$flx-spacing-xs: 4px;
+$flx-spacing-s: 8px;
+$flx-spacing-m: 16px;
+$flx-spacing-l: 24px;
+$flx-spacing-xl: 32px;
+$flx-spacing-xxl: 48px;
+$flx-spacing-xxxl: 64px;
+
+/*----[Dimension Vars]-----*/
+
+$desktop-min-width: 1080px;
+$desktop-max-width: 1500px;
