@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="favicon.ico">
+        <title>amd-extras</title>
+
+        <link rel="stylesheet" href="app/styles.css" />
+    </head>
+
+    <body data-ng-cloak>
+        <section navbar layout="column"></section>
+
+        <!-- Main Content -->
+        <section id="main-content" layout="row" class="main-content" data-ng-cloak>
+            <div flex="grow" data-ui-view layout="column" flex="grow" class="animate fadeIn"></div>
+        </section>
+
+        <!-- Page cover for when states are loading -->
+        <loading-page class="animate fadeIn"></loading-page>
+
+        <!-- Vendor scripts -->
+
+        <!-- App scripts -->
+
+    </body>
+</html>

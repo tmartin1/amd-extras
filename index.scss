@@ -1,0 +1,36 @@
+// Import icon config and global scss variables.
+@import "./assets/styles/_global-vars.scss";
+@import "./assets/styles/_material-icons.scss";
+
+// Import libraries and frameworks.
+@import "../../node_modules/font-awesome/css/font-awesome.min.css";
+@import "./assets/styles/_ngAnimate.min.scss";
+
+/**
+ * Define default Angular-Material style variables below.
+ * This must be done BEFORE importing angular-material.scss
+ * See angular-material.scss for more info.
+ */
+
+$z-index-toast: map-get($z-index, 'header');
+$z-index-tooltip: map-get($z-index, 'modal');
+// $z-index-menu: 100;
+$z-index-select: map-get($z-index, 'modal-select');
+$z-index-dialog: map-get($z-index, 'modal');
+$z-index-bottom-sheet: map-get($z-index, 'footer');
+// $z-index-scroll-mask: 65;
+$z-index-sidenav: map-get($z-index, 'sidebar');
+// $z-index-backdrop: 50;
+// $z-index-fab: 20;
+
+// Import Angular-Material style sheet.
+@import "../../node_modules/angular-material/angular-material.scss";
+
+// Basic Styles - ** Overwrites Angular Material Defaults **
+@import "./assets/styles/_basic-styles.scss";
+@import "./assets/styles/_spacing.scss";
+@import "./assets/styles/_angular-material-overrides.scss";
+@import "./assets/styles/_font-awesome-overrides.scss";
+
+// Import common service, directive, and component styles.
+@import "./directives/directives.scss";
